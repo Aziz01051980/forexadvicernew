@@ -2,16 +2,21 @@ package myforexhelp.realtime;
 
 import myforexhelp.realtime.Controller.HelloController;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication
-@ComponentScan(basePackages = {"myforexhelp.realtime.Controller"})
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+@EnableJpaRepositories
 public class RealtimeApplication {
 
 	public static void main(String[] args)
 	{
 		SpringApplication.run(RealtimeApplication.class, args);
-		System.out.println("Hello world");
+		System.out.println("Application is running");
 	}
 }
