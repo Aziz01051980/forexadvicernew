@@ -22,17 +22,6 @@ public class ArticleController {
 
     private final ArticleRepository articleRepository;
 
-//    @Autowired
-//    public ArticleController(ArticleRepository articleRepository) {
-//        this.articleRepository = articleRepository;
-//    }
-
-//    @RequestMapping(value = "/articleadding", method = RequestMethod.GET)
-//    public String getAll(Model model) {
-//        Object allArticles = searchingService.articleConverter();
-//        model.addAttribute("articles", allArticles);
-//        return "articles";
-//    }
 
     @RequestMapping(value = "/getadminpanel", method = RequestMethod.GET)
     public String getAdminPanel(Model model) {
@@ -47,23 +36,6 @@ public class ArticleController {
         return "users";
     }
 
-//    @PostMapping(value = "/searchingData")
-//    public Article checkUser(@RequestParam String searchValue){
-//        ArrayList<String> myString = new ArrayList<>();
-//        List<Article> contents = searchingService.allArticles();
-//        for(Article content : contents) {
-//            String allWords = content.toString();
-//            String[] word = allWords.split(" ");
-//            for (int i = 0; i < word.length; i++) {
-//                String contentWord = word[i];
-//                myString.addAll(Collections.singleton(contentWord));
-//                if (myString.contains(searchValue)) {
-//                    return content;
-//                }
-//            }
-//        }
-//        return null;
-//    }
 
     @RequestMapping(value = "/articlesall", method = RequestMethod.GET)
     public String getArticles(Model model){

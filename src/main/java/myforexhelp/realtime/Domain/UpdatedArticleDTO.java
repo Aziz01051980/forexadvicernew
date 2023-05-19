@@ -23,26 +23,4 @@ public class UpdatedArticleDTO {
     private String title;
     private String description;
     private String content;
-
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public String getTitle(){
-//        return title;
-//    }
-//
-//    public String getDescription(){
-//        return description;
-//    }
-//
-//    public String getContent(){
-//        return content;
-//    }
-
-
 }

@@ -3,40 +3,18 @@
 <body>
 <form action="/getAuthentification" method="POST">
   <label for="userName">User Name</label><br>
-  <input type="text" id="userName" name="userName" maxlength="50" size="50"><br>
+  <input type="text" id="userName" name="userName" maxlength="25" size="25"><br>
   <label for="password">Password</label><br>
-  <input type="text" id="password" name="password" maxlength="100" size="100">
+  <input type="password" id="password" name="password" maxlength="25" size="25">
   <button type="submit" id="submitData" onclick="loadDoc()">Submit</button>
 </form>
 </body>
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 <script>
   function loadDoc() {
     var userName = document.getElementById("userName").value;
     var password = document.getElementById("password").value;
 
     var xhttp = new XMLHttpRequest();
-    // xhttp.onreadystatechange = function() {
-    //   if (this.readyState === 4) {
-    //     if (this.status === 200) {
-    //       // handle success
-    //       if (this.responseText === "Entry permission") {
-    //         window.location.href = '/addedarticle'; // redirect to articles list page
-    //       } else if (this.responseText === "User Not Found") {
-    //         window.location.href = '/userNotFound'; // redirect to articles list page
-    //         // alert('User not found.');
-    //       } else if (this.responseText === "Entry Forbidden") {
-    //         window.location.href = '/entryForbidden'; // redirect to articles list page
-    //         // alert('Invalid username or password.');
-    //       } else {
-    //         alert('Unknown response: ' + this.responseText);
-    //       }
-    //     } else {
-    //       // handle error
-    //       alert('Failed to authenticate. Status: ' + this.status);
-    //     }
-    //   }
-    // };
     xhttp.open("POST", "/getAuthentification", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("userName=" + encodeURIComponent(userName) + "&password=" + encodeURIComponent(password));

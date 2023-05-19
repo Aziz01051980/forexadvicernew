@@ -38,7 +38,4 @@ public class QuizController{
         model.addAttribute("articles", articleRepository.findAll());
         return "moneymanagement";
     }
-
-
-
 }

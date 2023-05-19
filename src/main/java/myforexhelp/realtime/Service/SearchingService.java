@@ -20,11 +20,6 @@ public class SearchingService {
         return articleList;
     }
 
-//    public List<Article> allArticles() {
-//        List<Article> allContents = articleRepository.findContentById();
-//        return allContents;
-//    }
-
     public List<Object[]> getTitleDescriptionAndContentByid() {
         List<Object[]> articleList = articleRepository.findTitleDescriptionAndTitle();
         return articleList;

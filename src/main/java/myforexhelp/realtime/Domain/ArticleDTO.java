@@ -22,13 +22,6 @@ public class ArticleDTO {
 
     }
 
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
 
     @Override
     public String toString() {
