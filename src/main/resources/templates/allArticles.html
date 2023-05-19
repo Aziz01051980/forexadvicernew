@@ -95,7 +95,6 @@
 
 <div style="padding-left:100px; padding-top:50px;">
   <h2>Want to learn about trading?</h2>
-<!--  <img th:src="@{/static/trader.png}" alt="Smiley face" class="float-right" width="42" height="42" />-->
 </div>
 
 <style>
@@ -118,9 +117,33 @@
     display: table;
     clear: both;
   }
+
+  form {
+    overflow: hidden;
+  }
+  input {
+    float: right;
+    margin-top: 5px;
+    clear: both;
+    width: 15%;
+    padding: 10px 10px;
+    /*margin: 8px 0;*/
+    box-sizing: border-box;
+  }
 </style>
 </head>
 <body>
+
+<form>
+<input type="text" id="inputeDataForSearch" name="inputedName" placeholder="Input word for search"><br>
+<input type="submit" value="Submit" onclick=sendSearchData()>
+</form>
+
+<form>
+  <input type="text" id="inputedName" name="inputedName" placeholder="Your name for subscribe"><br>
+  <input type="text" id="inputedEmail" name="inputedEmail" placeholder="Enter your email"><br><br>
+  <input type="submit" id="inputedNameAndEmail" value="Submit" onclick=sendForm()>
+</form>
 
 
 <div class="row">
@@ -144,42 +167,31 @@
   </div>
 </div>
 
-<!--<script>-->
-<!--  function searchButton() {-->
-<!--    var url = "/newarticleadding";-->
-<!--    $.get(url, null, function (data) {-->
-<!--      $("#rData").html(data);-->
-<!--  }-->
-<!--  )}-->
-<!--</script>-->
-<!--<link href="/../script/allArticles.js" rel="stylesheet"/>-->
-<!--<script src="../script/allArticles.js"></script>-->
 </body>
 </body>
 </body>
-<!--<link href="articleadding.js" rel="stylesheet"/>-->
-<!--<script src="../script/allArticles.js"></script>-->
 <script>
-  function searchButton() {
-    var searchValue = document.getElementById("searchInput").value;
+  function sendForm() {
+    let name = document.getElementById("inputedName").value;
+    let email = document.getElementById("inputedEmail").value;
+
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          // handle success
+          window.location.href = '/articlesall'; // redirect to addedArticle page
+        } else {
+          // handle error
+          alert('Failed to send data.');
+        }
       }
     };
-    xhttp.open("GET", "/search/searchingdata/{searchValue}" + searchValue, true);
-    xhttp.getAllResponseHeaders();
+
+    xhttp.open("POST", "http://localhost:8081/addNameandEmail", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email));
   }
-</script>
-<script>
-  document.getElementById("calculator").addEventListener("click", function() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/calculator", true);
-    xhr.onload = function() {
-      document.getElementById("content").innerHTML = xhr.responseText;
-    };
-    xhr.send();
-  });
 </script>
 </html>

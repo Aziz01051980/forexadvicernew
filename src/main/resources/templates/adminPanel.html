@@ -8,7 +8,7 @@
   <input type="text" id="description" name="description" maxlength="100" size="100">
   <label for="content">Content of the article (max 10000 characters)</label><br>
   <textarea id="content" name="content" rows="100" cols="100" maxlength="10000"></textarea>
-  <button type="submit" id="submitData" onclick="loadDoc()">Add Article</button>
+  <button type="button" id="submitData" onclick="loadDoc()">Add Article</button>
 </form>
 </body>
 <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
@@ -22,7 +22,7 @@
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         // handle success
-        window.location.href = '/articles'; // redirect to articles list page
+        window.location.href = '/addedarticle'; // redirect to articles list page
       } else if (this.readyState == 4) {
         // handle error
         alert('Failed to add article.');

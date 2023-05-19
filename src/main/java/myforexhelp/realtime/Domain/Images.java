@@ -26,7 +26,6 @@ public class Images {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     private String url;
 
 }

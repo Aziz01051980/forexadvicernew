@@ -4,18 +4,21 @@ import lombok.AllArgsConstructor;
 import myforexhelp.realtime.Domain.Article;
 import myforexhelp.realtime.Domain.User;
 import myforexhelp.realtime.Repository.ArticleRepository;
-import org.springframework.http.ResponseEntity;
+import myforexhelp.realtime.Service.SearchingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.List;
+import java.util.*;
 
 @AllArgsConstructor
 @Controller
 public class ArticleController {
 
+    @Autowired
+    private SearchingService searchingService;
 
     private final ArticleRepository articleRepository;
 
@@ -24,11 +27,12 @@ public class ArticleController {
 //        this.articleRepository = articleRepository;
 //    }
 
-    @RequestMapping(value = "/articleadding", method = RequestMethod.GET)
-    public ResponseEntity<List<Article>> getAll(){
-        List<Article> list = articleRepository.findAll();
-        return ResponseEntity.ok(list);
-    }
+//    @RequestMapping(value = "/articleadding", method = RequestMethod.GET)
+//    public String getAll(Model model) {
+//        Object allArticles = searchingService.articleConverter();
+//        model.addAttribute("articles", allArticles);
+//        return "articles";
+//    }
 
     @RequestMapping(value = "/getadminpanel", method = RequestMethod.GET)
     public String getAdminPanel(Model model) {
@@ -36,16 +40,30 @@ public class ArticleController {
         return "adminPanel";
     }
 
+
     @RequestMapping(value = "/checkuser")
     public String checkUser(Model model){
         model.addAttribute("user", new User());
         return "users";
     }
 
-    @RequestMapping (value = "/newarticleadding") //
-    public String showArticleAddingForm() {
-        return "newarticleadding";
-    }
+//    @PostMapping(value = "/searchingData")
+//    public Article checkUser(@RequestParam String searchValue){
+//        ArrayList<String> myString = new ArrayList<>();
+//        List<Article> contents = searchingService.allArticles();
+//        for(Article content : contents) {
+//            String allWords = content.toString();
+//            String[] word = allWords.split(" ");
+//            for (int i = 0; i < word.length; i++) {
+//                String contentWord = word[i];
+//                myString.addAll(Collections.singleton(contentWord));
+//                if (myString.contains(searchValue)) {
+//                    return content;
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     @RequestMapping(value = "/articlesall", method = RequestMethod.GET)
     public String getArticles(Model model){
@@ -67,10 +85,5 @@ public class ArticleController {
     public String getCalculator(Model model){
         model.addAttribute("articles", articleRepository.findAll());
         return "calculator";
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteArticle(@PathVariable Long id) {
-        articleRepository.deleteById(id);
     }
 }
