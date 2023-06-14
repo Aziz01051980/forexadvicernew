@@ -1,10 +1,10 @@
-package myforexhelp.realtime.Controller;
+package myforexhelp.realtime.controller;
 
 import lombok.AllArgsConstructor;
-import myforexhelp.realtime.Domain.Article;
-import myforexhelp.realtime.Domain.User;
-import myforexhelp.realtime.Repository.ArticleRepository;
-import myforexhelp.realtime.Service.SearchingService;
+import myforexhelp.realtime.domain.Article;
+import myforexhelp.realtime.domain.User;
+import myforexhelp.realtime.repository.ArticleRepository;
+import myforexhelp.realtime.service.SearchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,8 +54,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/calculator", method = RequestMethod.GET)
-    public String getCalculator(Model model){
-        model.addAttribute("articles", articleRepository.findAll());
+    public String getCalculator(){
         return "calculator";
     }
 }

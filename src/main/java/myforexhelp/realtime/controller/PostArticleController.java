@@ -1,11 +1,11 @@
-package myforexhelp.realtime.Controller;
+package myforexhelp.realtime.controller;
 
 import lombok.AllArgsConstructor;
-import myforexhelp.realtime.Domain.*;
-import myforexhelp.realtime.Repository.ArticleRepository;
-import myforexhelp.realtime.Repository.NameAndEmailRepository;
-import myforexhelp.realtime.Repository.UserRepository;
-import myforexhelp.realtime.Service.SearchingService;
+import myforexhelp.realtime.domain.*;
+import myforexhelp.realtime.repository.ArticleRepository;
+import myforexhelp.realtime.repository.NameAndEmailRepository;
+import myforexhelp.realtime.repository.UserRepository;
+import myforexhelp.realtime.service.SearchingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @AllArgsConstructor

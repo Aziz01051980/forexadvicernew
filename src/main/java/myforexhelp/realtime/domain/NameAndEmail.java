@@ -1,4 +1,4 @@
-package myforexhelp.realtime.Domain;
+package myforexhelp.realtime.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 

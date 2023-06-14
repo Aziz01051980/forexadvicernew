@@ -1,5 +1,5 @@
-package myforexhelp.realtime.Repository;
-import myforexhelp.realtime.Domain.Article;
+package myforexhelp.realtime.repository;
+import myforexhelp.realtime.domain.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

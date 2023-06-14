@@ -1,6 +1,6 @@
-package myforexhelp.realtime.Controller;
+package myforexhelp.realtime.controller;
 
-import myforexhelp.realtime.Repository.ArticleRepository;
+import myforexhelp.realtime.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

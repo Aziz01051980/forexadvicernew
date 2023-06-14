@@ -1,11 +1,9 @@
-package myforexhelp.realtime.Service;
+package myforexhelp.realtime.service;
 
-import myforexhelp.realtime.Domain.Article;
-import myforexhelp.realtime.Repository.ArticleRepository;
+import myforexhelp.realtime.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

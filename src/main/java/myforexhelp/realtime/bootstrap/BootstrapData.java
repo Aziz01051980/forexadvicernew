@@ -1,7 +1,7 @@
 package myforexhelp.realtime.bootstrap;
 
-import myforexhelp.realtime.Repository.ArticleRepository;
-import myforexhelp.realtime.Repository.ImageRepository;
+import myforexhelp.realtime.repository.ArticleRepository;
+import myforexhelp.realtime.repository.ImageRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
