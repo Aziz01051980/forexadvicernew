@@ -1,48 +1,227 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:margin-top="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Articles</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Your Website</title>
+  <style>
+    /* Add any additional styling here */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      display: flex;
+      height: 100vh;
+    }
+
+    #left {
+      flex: 0.5;
+      background-color: lightblue;
+      padding: 20px;
+    }
+
+    #left h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #left img {
+      border-radius: 50%;
+      width: 160px;
+      height: 150px;
+      margin: 10px 0;
+    }
+
+    #left .icons {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    #left .icons img {
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+    }
+
+    #right {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #aside img {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    margin: 10px 0;
+    object-fit: cover;
+    object-position: center
+    float: right;
+    margin-left: 10px;
+}
+
+#email img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0; /* Remove rounded corners */
+  }
+
+    #right #top {
+      background-color: #F0FFFF;
+      padding: 50px;
+
+    }
+
+    #right #bottom {
+      flex: 1;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    #right #bottom .section {
+      flex: 1;
+      text-align: center;
+    }
+
+    #right .section h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #right .section p {
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    #inputedNameAndEmail {
+    background-color: lightblue;
+  }
+
+  #email {
+      width:  200px;
+      height: 100px;
+      margin: 10px;
+      background-color: lightblue;
+      box-sizing: border-box;
+  }
+
+  #email img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0; /* Remove rounded corners */
+  }
+  </style>
 </head>
 <body>
-<h1>Articles</h1>
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Content</th>
-  </tr>
-  </thead>
-  <tbody id="article-table-body">
-  </tbody>
-</table>
+<div id="container">
+  <div id="left">
+    <h2>Aziz Khalilov's blog</h2>
+    <img src="images/oldBlogger.jpg" alt="Profile Photo">
+    <p>I am a personla trader who has more than 10 years experiance in trading</p>
+    <div class="icons">
+      <a href="https://www.facebook.com/gerchik.official"><img src="images/facebook.png" alt="Telegram Icon"></a>
+      <a href="https://web.telegram.org/k/#@alfa_forex"><img src="images/twitter.png" alt="Facebook Icon"></a>
+      <a href="https://web.telegram.org/k/#@alfa_forex"><img src="images/telegram.png" alt="Facebook Icon"></a>
+    </div>
 
-<script>
-  $(document).ready(function() {
-    // Make a GET request to retrieve all the articles from the backend
-    $.ajax({
-      url: "/articles",
-      type: "GET",
-      dataType: "json",
-      success: function(data) {
-        // Iterate over the list of articles and add each one to the table
-        $.each(data, function(index, article) {
-          var row = $("<tr>")
-                  .append($("<td>").text(article.id))
-                  .append($("<td>").text(article.title))
-                  .append($("<td>").text(article.description))
-                  .append($("<td>").text(article.content));
-          $("#article-table-body").append(row);
-        });
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.error("Error retrieving articles: " + textStatus + " - " + errorThrown);
-      }
-    });
-  });
-</script>
+    <div id="email">
+        <h4><a href="/about">ABOUT</a></h4>
+        <h4><a href="/articles/formForClientMessage">EMAIL ME</a></h4>
+        <h4><a href="/quiz/calculator">FOREX CALCULATOR</a></h4>
+      </ul>
+    </div>
+<!--      <div>-->
+<!--      <aside>-->
+<!--          <img src="images/ads.jpg" alt="Profile Photo">-->
+<!--      </aside>-->
+<!--      </div>-->
+  </div>
+  <div id="right" style="text-align:center">
+    <div id="top">
+      <h1>Personal blog about forex and investments</h1>
+<!--      style="color:white;"-->
+      <form >
+        <label for="inputedEmail">Enter your email for subscribing:</label><br>
+        <input type="text" id="inputedEmail" name="inputedEmail" required size="35"><br>
+        <input type="submit" id="inputedNameAndEmail" value="Submit" onclick="mailForSubscribe()">
+      </form>
+    </div>
+    <div id="bottom">
+<!--      <form>-->
+      <div class="section">
+          <img src="images/quiz.png" alt="Image" style="float: left; margin-right: 20px; max-width: 200px; max-height: 150px;">
+          <h2>Quiz</h2>
+          <p><a href="/quiz/mainquiz">In quiz section we have prepared some quiz's for you about different parts <br>
+          of the trading and will be glad if you will pass them succesfully</a></p>
+      </div>
+      <div class="section">
+          <img src="images/article.png" alt="Image" style="float: left; margin-right: 10px; max-width: 200px; max-height: 150px;">
+          <h2>Articles</h2>
+          <p><a href="/articles/allArticles">In articles section we have prepared articles about different part of the trading.<br>
+              We will populate this section for creating more opprtunities. Have pleassure in reading</a></p>
+    </div>
+  </div>
+</div>
+</div>
 </body>
-</html>
+<script>
+  function mailForSubscribe() {
+<!--    let name = document.getElementById("inputedName").value;-->
+    let email = document.getElementById("inputedEmail").value;
 
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          // handle success
+          window.location.href = '/'; // redirect to addedArticle page
+        } else {
+          // handle error
+          alert('Failed to send data.');
+        }
+      }
+    };
+
+    xhttp.open("POST", "/addNameandEmail", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("email=" + encodeURIComponent(email));
+  }
+</script>
+<!--<script>-->
+<!--  function mailForSubscribe() {-->
+<!--&lt;!&ndash;    let name = document.getElementById("inputedName").value;&ndash;&gt;-->
+<!--    let email = document.getElementById("inputedEmail").value;-->
+
+
+<!--    var xhttp = new XMLHttpRequest();-->
+<!--    xhttp.onreadystatechange = function() {-->
+<!--      if (this.readyState == 4) {-->
+<!--        if (this.status == 200) {-->
+<!--          // handle success-->
+<!--          window.location.href = '/'; // redirect to addedArticle page-->
+<!--        } else {-->
+<!--          // handle error-->
+<!--          alert('Failed to send data.');-->
+<!--        }-->
+<!--      }-->
+<!--    };-->
+
+<!--    xhttp.open("GET", "/addNameandEmail", true);-->
+<!--    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");-->
+<!--    xhttp.send();-->
+<!--  }-->
+<!--</script>-->
+</html>

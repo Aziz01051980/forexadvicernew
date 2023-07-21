@@ -17,8 +17,8 @@
     <td th:text="${article.split(',')[0]}"></td>
 <!--    <td th:text="${article.split(',')[1]}"></td>-->
     <td>
-    <a th:href="@{/update/{id}(id=${article.split(',')[0]})}">Update</a>
-    <a th:href="@{/delete/{id}(id=${article.split(',')[0]})}">Delete</a>
+    <a th:href="@{/admin/update/{id}(id=${article.split(',')[0]})}">Update</a>
+    <a th:href="@{/admin/delete/{id}(id=${article.split(',')[0]})}">Delete</a>
     </td>
   </tr>
 </table>

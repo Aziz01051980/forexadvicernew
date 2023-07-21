@@ -1,15 +1,18 @@
 package myforexhelp.realtime.domain;
-import jakarta.persistence.*;
+
+
 import lombok.Data;
+
+import javax.persistence.*;
+
 
 @Data
 @Entity
-@Table(name = "email_and_nane")
+@Table(name = "email_and_name")
 public class NameAndEmail {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     private String email;
 }

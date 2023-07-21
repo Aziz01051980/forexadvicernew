@@ -24,10 +24,11 @@
       if (this.readyState == 4) {
         if (this.status == 200) {
           // handle success
-          window.location.href = '/addedarticle'; // redirect to addedArticle page
+          window.location.href = '/admin/login'; // redirect to login page
         } else {
           // handle error
           alert('Failed to update article.');
+          window.location.href = '/admin/login'; // redirect to login pag
         }
       }
     };
@@ -39,7 +40,7 @@
       content: document.getElementById("contentForEdit").value
     };
 
-    xhttp.open("PUT", "http://localhost:8081/update/" + idForEditing, true);
+    xhttp.open("PUT", "/admin/update/" + idForEditing, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(updatedArticle));
   }

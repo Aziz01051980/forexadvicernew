@@ -1,10 +1,14 @@
 package myforexhelp.realtime.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Data
 @Component

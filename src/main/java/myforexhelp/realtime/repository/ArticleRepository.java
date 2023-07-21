@@ -13,10 +13,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query(value = "SELECT t.id, t.title FROM Article t WHERE t.id IS NOT NULL")
     List<?> findTitleAndDescription();
 
-    @Query("SELECT t.id, t.title FROM Article t WHERE t.id IS NOT NULL")
+    @Query("SELECT t.id, t.title, t.description FROM Article t WHERE t.id IS NOT NULL")
     List<Object[]> findTitleAndId();
 
-    @Query("SELECT t.id, t.title, t.description,t.content FROM Article t WHERE t.id IS NOT NULL")
+    @Query("SELECT t.id, t.title, t.description, t.content FROM Article t WHERE t.id IS NOT NULL")
     List<Object[]> findTitleDescriptionAndTitle();
 
     @Query("SELECT t.content FROM Article t WHERE t.id IS NOT NULL")

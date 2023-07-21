@@ -1,14 +1,16 @@
 package myforexhelp.realtime.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Data
 @Entity
-@Table(name = "articles")
+@Table(name = "my_all_articles")
 public class UpdatedArticleDTO {
 
     public UpdatedArticleDTO(Long id, String title, String description, String content) {
@@ -23,4 +25,24 @@ public class UpdatedArticleDTO {
     private String title;
     private String description;
     private String content;
+
+    public UpdatedArticleDTO() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleDTO{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
+
+    public Long getFormattedData() {
+        return id;
+    }
+
+    public String getFormattedData1() {
+        return title;
+    }
 }

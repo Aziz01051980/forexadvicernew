@@ -1,13 +1,15 @@
 package myforexhelp.realtime.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Data
 @Entity
-@Table(name = "articles")
+@Table(name = "my_all_articles")
 public class ArticleTransferObject {
     @Id
     private Long id;

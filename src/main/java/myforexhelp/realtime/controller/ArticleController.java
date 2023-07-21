@@ -2,10 +2,13 @@ package myforexhelp.realtime.controller;
 
 import lombok.AllArgsConstructor;
 import myforexhelp.realtime.domain.Article;
+import myforexhelp.realtime.domain.NameAndEmail;
 import myforexhelp.realtime.domain.User;
 import myforexhelp.realtime.repository.ArticleRepository;
 import myforexhelp.realtime.service.SearchingService;
+import myforexhelp.realtime.service.SendingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +16,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@AllArgsConstructor
 @Controller
+@RequestMapping("/managing")
 public class ArticleController {
 
-    @Autowired
-    private SearchingService searchingService;
 
-    private final ArticleRepository articleRepository;
+    private ArticleRepository articleRepository;
 
+    private SendingService sendingService;
+
+    public ArticleController(SendingService sendingService, ArticleRepository articleRepository) {
+        this.sendingService = sendingService;
+        this.articleRepository = articleRepository;
+    }
 
     @RequestMapping(value = "/getadminpanel", method = RequestMethod.GET)
     public String getAdminPanel(Model model) {
@@ -30,31 +37,16 @@ public class ArticleController {
     }
 
 
-    @RequestMapping(value = "/checkuser")
-    public String checkUser(Model model){
-        model.addAttribute("user", new User());
-        return "users";
-    }
 
-
-    @RequestMapping(value = "/articlesall", method = RequestMethod.GET)
-    public String getArticles(Model model){
-        model.addAttribute("articles", articleRepository.findAll());
+    @RequestMapping(value = "/sendMail", method = RequestMethod.POST)
+    public String addNameAndEmail(@RequestParam("subject") String subject,
+                                  @RequestParam("textOfTheMail") String textOfTheMail) {
+        sendingService.sendMailToRecipient(subject, textOfTheMail);
         return "allArticles";
     }
 
-    @RequestMapping(value = "/articles", method = RequestMethod.GET)
-    public String create(@RequestBody Article article){
-        List <Article> article1 = articleRepository.findAll();
-        if(article1.isEmpty()){
-            return "object is empty";
-        } else {
-            return "object is not empty";
-        }
-    }
-
-    @RequestMapping(value = "/calculator", method = RequestMethod.GET)
-    public String getCalculator(){
-        return "calculator";
+    @RequestMapping(value = "/createArticleForSend", method = RequestMethod.GET)
+    public String createArticleForSend(){
+        return "createArticleForSend";
     }
 }

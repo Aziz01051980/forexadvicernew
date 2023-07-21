@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:margin-top="http://www.w3.org/1999/xhtml">
+<body>
+<form>
+  <label for="mailOfClient">Enter your mail please</label><br>
+  <input type="text" id="mailOfClient" name="mailOfClient" maxlength="30" size="30"><br>
+  <label for="subjectOfTheClientMail">Subject of the mail</label><br>
+  <input type="text" id="subjectOfTheClientMail" name="subjectOfTheClientMail" maxlength="30" size="30"><br>
+  <label for="textOfTheClientMail">Content of the mail</label><br>
+  <textarea id="textOfTheClientMail" name="textOfTheClientMail" rows="50" cols="50" maxlength="2000"></textarea>
+  <button type="submit" id="submitInfo" onclick="sendToEndpoint()">Send</button>
+<!--  <button type="button" id="submitData" onclick="loadDoc()">Add Article</button>-->
+</form>
+</body>
+<script>
+  function sendToEndpoint() {
+    var mail = document.getElementById("mailOfClient").value;
+    var subject = document.getElementById("subjectOfTheClientMail").value;
+    var textOfTheMail = document.getElementById("textOfTheClientMail").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // handle success
+        window.location.href = "/"; // redirect to articles list page
+      } else if (this.readyState == 4) {
+        // handle error
+        alert('Failed to add article.');
+      }
+    };
+    xhttp.open("POST", "/articles/sendingClientMail", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("mail=" + encodeURIComponent(mail) + "&subject=" + encodeURIComponent(subject) + "&textOfTheMail=" + encodeURIComponent(textOfTheMail));
+  }
+</script>
+</html>

@@ -1,24 +1,37 @@
 package myforexhelp.realtime.controller;
 
-import lombok.AllArgsConstructor;
 import myforexhelp.realtime.domain.*;
 import myforexhelp.realtime.repository.ArticleRepository;
 import myforexhelp.realtime.repository.NameAndEmailRepository;
 import myforexhelp.realtime.repository.UserRepository;
 import myforexhelp.realtime.service.SearchingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @Controller
-//@RequestMapping("/restservice")
+@Component
+@RequestMapping("/admin")
 public class PostArticleController {
+
+    private Authentication authentication;
+
+    private RestTemplate restTemplate;
+
+//    private WebClient webClient;
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -35,16 +48,13 @@ public class PostArticleController {
     @Autowired
     private SearchingService searchingService;
 
-    @PostMapping(value = "/getAuthentification")
-    public String getAuthentification(@RequestParam String userName, @RequestParam String password){
-        User user = userRepository.findByUserName(userName);
-        if (user == null) {
-            return "userNotFound";
-        } else if (user.getPassword().equals(password)) {
-            return "adminPanel";
-        } else {
-            return "entryForbidden";
-        }
+    SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+
+    @PostMapping("/logout")
+    public String performLogout(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
+        // .. perform logout
+        this.logoutHandler.logout(request, response, authentication);
+        return "homepage";
     }
 
     @GetMapping(value = "/userNotFound")
@@ -66,23 +76,13 @@ public class PostArticleController {
         article.setDescription(description);
         article.setContent(content);
         articleRepository.save(article);
-        return "allArticles";
-    }
-
-    @PostMapping(value = "/addNameandEmail")
-    public String addNameAndEmail(@RequestParam("name") String name,
-                             @RequestParam("email") String email) {
-        NameAndEmail nameAndEmail = new NameAndEmail();
-        nameAndEmail.setName(name);
-        nameAndEmail.setEmail(email);
-        nameAndEmailRepository.save(nameAndEmail);
-        return "allArticles";
+        return "pageForManaging";
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public String deleteArticle(@PathVariable("id") Long id) {
         articleRepository.deleteById(id);
-        return "addedarticle";
+        return "pageForManaging";
     }
 
     @GetMapping(value = "/getForUpdate/{id}")
@@ -125,14 +125,14 @@ public class PostArticleController {
 
             // Save the updated article in the database
             articleRepository.save(existingArticle);
-            return "addedarticle";
+            return "pageForManaging";
         } else {
             // Article with the specified ID was not found
             throw new RuntimeException("Article not found");
         }
     }
 
-    @RequestMapping(value = "/addedarticle", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getAll(Model model) {
         List<Object[]> allArticles = searchingService.articleConverter();
 
@@ -143,11 +143,11 @@ public class PostArticleController {
             Long id = (Long) articleData[0];
             String title = (String) articleData[1];
 
-            ArticleDTO articleDTO = new ArticleDTO(id, title);
+            ArticleDTO articleDTO = new ArticleDTO(id, title, null);
             articles.add(articleDTO);
         }
 
         model.addAttribute("articles", articles);
-        return "addedarticle";
+        return "pageForManaging";
     }
 }

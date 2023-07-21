@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:margin-top="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Article Management</title>
+</head>
+<body>
+<h1>Article Management</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Actions</th>
+    <th>Actions</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each="article, articleStat : ${articles}">
+    <td th:text="${article.formattedData}" th:id="'articleId_' + ${articleStat.index}"></td>
+    <td th:text="${article.formattedData1}"></td>
+    <td>
+      <button type="button" onclick="updateArticle(this)">Click to update</button>
+    </td>
+    <td>
+      <button type="button" onclick="deleteArticle(this)">Delete Article</button>
+    </td>
+    <td>
+      <button type="submit" onclick="addNewArticle()">Add new article</button>
+    </td>
+  </tr>
+</table>
+<button onclick="sendingMail()">Sendind mail for clients</button>
+<button onclick="logout()">Log out</button>
+
+<p id="demo"></p>
+</body>
+
+<script>
+  function logout() {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.status == 200) {
+                window.location.href = "/managing/createArticleForSend"; // redirect to articles list page
+            } else if (this.readyState == 4) {
+                alert('Failed to delete article.');
+            }
+        };
+        xhttp.open("POST", "/admin/logout", true);
+        xhttp.send();
+    }
+</script>
+
+<script>
+  function sendingMail() {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.status == 200) {
+                window.location.href = "/managing/createArticleForSend"; // redirect to articles list page
+            } else if (this.readyState == 4) {
+                alert('Failed to delete article.');
+            }
+        };
+        xhttp.open("GET", "/managing/createArticleForSend", true);
+        xhttp.send();
+    }
+</script>
+
+
+<script>
+  function deleteArticle(button) {
+    let id = button.parentNode.parentNode.querySelector("td").textContent;
+    console.log(id);
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+              if (this.status == 200) {
+                  // handle success
+                  window.location.href = "/admin/login";
+              } else {
+                  // handle error
+                  alert('Failed to delete article.');
+              }
+          }
+      };
+
+    xhttp.open("DELETE", "http://localhost:8081/admin/delete/" + id);
+    // xhttp.setRequestHeader('Accept', 'application/json');
+    xhttp.send();
+  }
+</script>
+<script>
+    function updateArticle(button) {
+        let id = button.parentNode.parentNode.querySelector("td").textContent;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.status == 200) {
+                window.location.href = "http://localhost:8081/admin/getForUpdate/" + id; // redirect to articles list page
+            } else if (this.readyState == 4) {
+                alert('Failed to delete article.');
+            }
+        };
+        xhttp.open("GET", "/admin/getForUpdate/" + id, true);
+        xhttp.send();
+    }
+</script>
+<script>
+    function addNewArticle() {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.status == 200) {
+                window.location.href = "/managing/getadminpanel"; // redirect to articles list page
+            } else if (this.readyState == 4) {
+                alert('Failed to delete article.');
+            }
+        };
+        xhttp.open("GET", "/managing/getadminpanel", true);
+        xhttp.send();
+    }
+</script>
+</html>
+
+

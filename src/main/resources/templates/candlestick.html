@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:margin-top="http://www.w3.org/1999/xhtml">
-<h2>Pass quick quiz about candlesticks</h2>
 
 
-<body>
-
+<head>
 <div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="http://localhost:8081/calculator" id="calculator">Calculator</a>
-    <a href="http://localhost:8081/quiz/mainquiz">Quiz</a>
+    <a class="active" href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/articles/allArticles">Articles</a>
+    <a href="/quiz/mainquiz">Quiz</a>
 </div>
+</head>
+
+<h1>Pass quick quiz about candlesticks</h1>
+<body>
 <div id="content"></div>
+<H2>Check your knowledges</H2>
 
 <form action="/action_page.php">
     <label for="indicators">How many indicators has candlestick?</label>
     <select name="indicators" id="indicators">
+        <option></option>
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -27,6 +30,7 @@
 <form action="/action_page.php">
     <label for="highestprice">Which point indicates the highest price in given period?</label>
     <select name="highestprice" id="highestprice">
+        <option></option>
         <option>lowest</option>
         <option>it depends</option>
         <option>highest</option>
@@ -34,8 +38,9 @@
 </form>
 
 <form action="/action_page.php">
-    <label for="lowestprice">Which point indicates the lowest price in given period?</label>
+    <label for="lowestprice">Which point of the candlestick indicates the lowest price in given period?</label>
     <select name="lowestprice" id="lowestprice">
+        <option></option>
         <option>lowest</option>
         <option>it depends</option>
         <option>highest</option>
@@ -45,6 +50,7 @@
 <form action="/action_page.php">
     <label for="priceChange">What indicates real price change?</label>
     <select name="priceChange" id="priceChange">
+        <option></option>
         <option>The body of the candlestick</option>
         <option>its wicks</option>
         <option>it depends</option>
@@ -54,9 +60,30 @@
 <form action="/action_page.php">
     <label for="absorption">What predicts absorption?</label>
     <select name="absorption" id="absorption">
-        <option>Possible price change</option>
+        <option></option>
+        <option>Trend changing</option>
         <option>Nothing</option>
         <option>Сontinuation of the trend</option>
+    </select>
+</form>
+
+<form action="/action_page.php">
+    <label for="wick">If candle stick has long wicks and short body?</label>
+    <select name="wick" id="wick">
+        <option></option>
+        <option>Market is in doubt</option>
+        <option>Nothing</option>
+        <option>Сontinuation of the trend</option>
+    </select>
+</form>
+
+<form action="/action_page.php">
+    <label for="bodyOfCandlestick">If candlestick has long body and short wicks?</label>
+    <select name="bodyOfCandlestick" id="bodyOfCandlestick">
+        <option></option>
+        <option>Nothing to say</option>
+        <option>Market is in doubt</option>
+        <option>Probably trend will continue</option>
     </select>
 </form>
 
@@ -72,6 +99,8 @@
         let thirdQuestion = document.getElementById("lowestprice").value;
         let fourthQuestion = document.getElementById("priceChange").value;
         let fifthQuestion = document.getElementById("absorption").value;
+        let sixthQuestion = document.getElementById("wick").value;
+        let seventhQuestion = document.getElementById("bodyOfCandlestick").value;
         if (firstQuestion === "4") {
             firstQuestion = 1;
         } else {
@@ -97,8 +126,18 @@
         } else {
             fifthQuestion = 0;
         }
-        let calculatedSum = firstQuestion + secondQuestion + thirdQuestion +fourthQuestion + fifthQuestion;
-        if(calculatedSum >= 3) {
+        if (sixthQuestion === "Market is in doubt") {
+            sixthQuestion = 1;
+        } else {
+            sixthQuestion = 0;
+        }
+        if (seventhQuestion === "Probably trend will continue") {
+            seventhQuestion = 1;
+        } else {
+            seventhQuestion = 0;
+        }
+        let calculatedSum = firstQuestion + secondQuestion + thirdQuestion +fourthQuestion + fifthQuestion + sixthQuestion + seventhQuestion;
+        if(calculatedSum > 4) {
             document.getElementById("result").innerHTML = "According to your answers the result is  " + calculatedSum +
                 ". You have enough knowledge about candlesticks";
         }else{
