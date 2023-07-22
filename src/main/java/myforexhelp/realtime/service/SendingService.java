@@ -22,8 +22,6 @@ public class SendingService {
 
     public String sendMailToRecipient(String subject, String textOfTheMail) {
 
-
-
         List<String> mails = nameAndEmailRepository.findAllMails();
         for (String mail : mails) {
             try {
@@ -33,7 +31,7 @@ public class SendingService {
                 mailMessage.setText(textOfTheMail);
                 mailSender.send(mailMessage);
             } catch (Exception e) {
-                System.out.println("An error occur");
+                System.out.println("Invalid email adress or other error occur");
             }
         }
         return "Mail sent";

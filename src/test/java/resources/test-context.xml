@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <bean id="articleRepository" class="myforexhelp.realtime.repository.ArticleRepository" />
+
+    <bean id="nameAndEmailRepository" class="myforexhelp.realtime.repository.NameAndEmailRepository" />
+
+    <bean id="authentication" class="org.springframework.security.core.Authentication" />
+
+    <bean id="adminRepository" class="myforexhelp.realtime.repository.AdminRepository" />
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+
+    <bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <property name="userDetailsService" ref="yourUserDetailsServiceBean" />
+        <!-- Additional properties and configurations for authentication provider -->
+    </bean>
+
+    <bean id="yourUserDetailsServiceBean" class="your.package.YourUserDetailsService">
+        <!-- Additional properties and configurations for user details service -->
+    </bean>
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <!-- Additional properties and configurations for password encoder -->
+    </bean>
+
+    <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+        <constructor-arg>
+            <list>
+                <ref bean="authenticationProvider" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <!-- Configure properties for your mail sender if necessary -->
+    </bean>
+
+    <bean id="sendingService" class="myforexhelp.realtime.service.SendingService">
+        <constructor-arg ref="nameAndEmailRepository" />
+        <constructor-arg ref="mailSender" />
+    </bean>
+
+    <bean id="articleController" class="myforexhelp.realtime.controller.ArticleController">
+        <constructor-arg ref="sendingService" />
+        <constructor-arg ref="articleRepository" />
+    </bean>
+
+    <bean id="contentController" class="myforexhelp.realtime.controller.ContentController">
+        <constructor-arg ref="articleRepository" />
+        <constructor-arg ref="nameAndEmailRepository" />
+        <constructor-arg ref="sendingService" />
+    </bean>
+
+    <bean id="customUserDetailsService" class="myforexhelp.realtime.service.CustomUserDetailsService">
+        <constructor-arg ref="adminRepository" />
+    </bean>
+
+    <bean id="postArticleController" class="myforexhelp.realtime.controller.PostArticleController">
+        <constructor-arg ref="restTemplate" />
+    </bean>
+</beans>
