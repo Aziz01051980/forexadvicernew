@@ -110,12 +110,20 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+<!--    <distributionManagement>-->
+<!--        <site>-->
+<!--            <id>forexadviser-site</id>-->
+<!--            <url>scp://forexadvicer.com/home3/forexadv/forexadvicer.com/my_application</url>-->
+<!--        </site>-->
+<!--    </distributionManagement>-->
     <distributionManagement>
         <site>
             <id>forexadviser-site</id>
-            <url>scp://forexadvicer.com/home3/forexadv/forexadvicer.com/my_application</url>
+            <url>file:D:\forexadvicer-site</url>
         </site>
     </distributionManagement>
+
+
 
     <build>
         <plugins>
