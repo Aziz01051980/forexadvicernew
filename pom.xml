@@ -110,7 +110,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+        <distributionManagement>
+            <site>
+                <id>www.forexadvicer.com</id>
+                <url>scp://www.forexadvicer.com/www/docs/project/</url>
+            </site>
+        </distributionManagement>
     <build>
         <plugins>
             <plugin>
