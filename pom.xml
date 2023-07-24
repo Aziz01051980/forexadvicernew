@@ -113,9 +113,10 @@
     <distributionManagement>
         <site>
             <id>forexadviser-site</id>
-            <url>http://www.forexadvicer.com</url>
+            <url>scp://forexadvicer.com/home3/forexadv/forexadvicer.com/my_application</url>
         </site>
     </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
