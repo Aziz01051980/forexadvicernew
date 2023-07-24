@@ -113,7 +113,7 @@
         <distributionManagement>
             <site>
                 <id>www.forexadvicer.com</id>
-                <url>scp://www.forexadvicer.com/www/docs/project/</url>
+                <url>ftp:ftp.forexadvicer.com</url>
             </site>
         </distributionManagement>
     <build>
