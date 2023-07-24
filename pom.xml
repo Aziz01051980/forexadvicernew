@@ -110,12 +110,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-        <distributionManagement>
-            <site>
-                <id>www.forexadvicer.com</id>
-                <url>FTP:ftp.forexadvicer.com</url>
-            </site>
-        </distributionManagement>
+    <distributionManagement>
+        <site>
+            <id>forexadviser-site</id>
+            <url>http://www.forexadvicer.com</url>
+        </site>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
