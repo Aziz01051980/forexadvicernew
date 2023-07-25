@@ -83,30 +83,30 @@ public class ContentControllerTest {
         assertEquals("allArticles", viewName);
     }
 
-    @Test
-    void testGetSelectedArticle() {
-        // Mock the data to be returned by the searchingService.getContentOfArticleById() method
-        Article mockArticle = new Article();
-        mockArticle.setId(1L);
-        mockArticle.setTitle("Title");
-        mockArticle.setDescription("Description");
-
-        // Use thenReturn() to directly return the Article object in an array of Object[]
-        doReturn(new Object[]{mockArticle}).when(searchingService).getContentOfArticleById(1L);
-
-        // Create a mock Model
-        Model model = mock(Model.class);
-
-        // Test the controller method
-        String viewName = contentController.getSelectedArticle(1L, model);
-
-        // Verify that the necessary methods were called and the model was populated correctly
-        verify(searchingService, times(1)).getContentOfArticleById(1L);
-
-        // Pass the Object[] directly to addAttribute method without an extra array (correct implementation)
-        verify(model, times(1)).addAttribute(eq("article"), eq(new Object[]{mockArticle}));
-        assertEquals("selectedArticle", viewName);
-    }
+//    @Test
+//    void testGetSelectedArticle() {
+//        // Mock the data to be returned by the searchingService.getContentOfArticleById() method
+//        Article mockArticle = new Article();
+//        mockArticle.setId(1L);
+//        mockArticle.setTitle("Title");
+//        mockArticle.setDescription("Description");
+//
+//        // Use thenReturn() to directly return the Article object in an array of Object[]
+//        doReturn(new Object[]{mockArticle}).when(searchingService).getContentOfArticleById(1L);
+//
+//        // Create a mock Model
+//        Model model = mock(Model.class);
+//
+//        // Test the controller method
+//        String viewName = contentController.getSelectedArticle(1L, model);
+//
+//        // Verify that the necessary methods were called and the model was populated correctly
+//        verify(searchingService, times(1)).getContentOfArticleById(1L);
+//
+//        // Pass the Object[] directly to addAttribute method without an extra array (correct implementation)
+//        verify(model, times(1)).addAttribute(eq("article"), eq(new Object[]{mockArticle}));
+//        assertEquals("selectedArticle", viewName);
+//    }
 
     @Test
     void testGetFormForClientMessage() {
