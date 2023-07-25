@@ -114,7 +114,7 @@
         <site>
             <id>forex-advicer-site</id>
             <name>my forexadvicer repository</name>
-            <url>http:///ftp.forexadvicer.com/public_html/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+            <url>scp:///ftp.forexadvicer.com/public_html/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
         </site>
     </distributionManagement>
     <build>
