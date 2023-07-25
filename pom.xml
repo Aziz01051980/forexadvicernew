@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
     </parent>
     <groupId>myforexhelp</groupId>
     <artifactId>realtime</artifactId>
@@ -114,15 +114,9 @@
         <site>
             <id>forex-advicer-site</id>
             <name>my forexadvicer repository</name>
-            <url>file:///ftp.forexadvicer.com/home3/forexadv/public_html</url>
+            <url>file:///ftp.forexadvicer.com/public_html/home3/forexadv</url>
         </site>
     </distributionManagement>
-
-
-
-
-
-
     <build>
         <plugins>
             <plugin>
