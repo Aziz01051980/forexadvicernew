@@ -110,9 +110,14 @@
         </dependency>
     </dependencies>
     <distributionManagement>
+        <repository>
+            <id>forex-advicer-repo</id>
+            <name>My ForexAdvicer Repository</name>
+            <url>file:///ftp.forexadvicer.com/public_html/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+        </repository>
         <site>
             <id>forex-advicer-site</id>
-            <name>my forexadvicer repository</name>
+            <name>My ForexAdvicer Site</name>
             <url>file:///ftp.forexadvicer.com/public_html/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
         </site>
     </distributionManagement>
