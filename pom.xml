@@ -114,13 +114,13 @@
             <id>forex-advicer-repo</id>
             <name>My ForexAdvicer Repository</name>
             <!--suppress UnresolvedMavenProperty -->
-            <url>sftp://username:userpassword@ftp.forexadvicer.com:21/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+            <url>file:D:\forexadvicer-site</url>
         </repository>
         <site>
             <id>forex-advicer-site</id>
             <name>My ForexAdvicer Site</name>
             <!--suppress UnresolvedMavenProperty -->
-            <url>sftp://username:userpassword!@ftp.forexadvicer.com:21/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+            <url>file:D:\forexadvicer-site</url>
         </site>
     </distributionManagement>
     <build>
