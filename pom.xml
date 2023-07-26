@@ -113,12 +113,12 @@
         <repository>
             <id>forex-advicer-repo</id>
             <name>My ForexAdvicer Repository</name>
-            <url>sftp:///ftp.forexadvicer.com/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+            <url>sftp://forexadvicer1980:Ensade0105!@ftp.forexadvicer.com:22/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
         </repository>
         <site>
             <id>forex-advicer-site</id>
             <name>My ForexAdvicer Site</name>
-            <url>sftp:///ftp.forexadvicer.com/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+            <url>sftp://forexadvicer1980:Ensade0105!@ftp.forexadvicer.com:22/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
         </site>
     </distributionManagement>
     <build>
