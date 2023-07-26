@@ -113,12 +113,12 @@
         <repository>
             <id>forex-advicer-repo</id>
             <name>My ForexAdvicer Repository</name>
-            <url>file:///ftp.forexadvicer.com/public_html/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+            <url>file:///ftp.forexadvicer.com/home3/forexadv/public_html</url>
         </repository>
         <site>
             <id>forex-advicer-site</id>
             <name>My ForexAdvicer Site</name>
-            <url>file:///ftp.forexadvicer.com/public_html/home3/forexadv/forexadvicer.com/forexadvicer1980</url>
+            <url>file:///ftp.forexadvicer.com/home3/forexadv/public_html</url>
         </site>
     </distributionManagement>
     <build>
