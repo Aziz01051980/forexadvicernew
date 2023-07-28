@@ -124,6 +124,7 @@
         </site>
     </distributionManagement>
     <build>
+        <finalName>RealTimeMyForexHelp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
