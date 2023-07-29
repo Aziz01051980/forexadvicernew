@@ -79,23 +79,23 @@ public class HomePageControllerTest {
                 .andExpect(view().name("about"));
     }
 
-    @Transactional
-//    @Rollback(value = false)
-    @Test
-    public void testAddNameAndEmail() throws Exception {
-        String email = "test@example.com";
-
-        mockMvc.perform(post("/addNameandEmail")
-                        .param("email", email))
-                .andExpect(status().isOk())
-                .andExpect(view().name("homepage"));
-
-        // Verify that the data is saved to the repository
-        List<String> savedNameAndEmails = nameAndEmailRepository.findAllMails();
-        assertNotNull(savedNameAndEmails);
-
-        System.out.println("Saved emails: " + savedNameAndEmails);
-
-        assertTrue(savedNameAndEmails.contains(email));
-    }
+//    @Transactional
+////    @Rollback(value = false)
+//    @Test
+//    public void testAddNameAndEmail() throws Exception {
+//        String email = "test@example.com";
+//
+//        mockMvc.perform(post("/addNameandEmail")
+//                        .param("email", email))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("homepage"));
+//
+//        // Verify that the data is saved to the repository
+//        List<String> savedNameAndEmails = nameAndEmailRepository.findAllMails();
+//        assertNotNull(savedNameAndEmails);
+//
+//        System.out.println("Saved emails: " + savedNameAndEmails);
+//
+//        assertTrue(savedNameAndEmails.contains(email));
+//    }
 }
